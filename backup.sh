@@ -14,7 +14,7 @@ for backupflag in $(find $BACKUP_SOURCE_DIR -name "$BACKUP_FLAG" ! -path "$BACKU
 
     if [ ! -z "$EMAIL" ]; then
       git add .
-      git commit -m "$(date +%s)"
+      git commit -m "$(date +%Y%m%d%H%M%S-%Z)"
       git push
     fi
   fi
