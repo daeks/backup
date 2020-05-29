@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ -f /etc/cron/crontab ]; then
-  printenv | grep -v "LANG" > /etc/environment
+  printenv > /etc/environment
   crontab /etc/cron/crontab
   service rsyslog restart && service cron restart
 fi
