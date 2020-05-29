@@ -15,6 +15,8 @@ for backupflag in $(find $BACKUP_SOURCE_DIR -name "$BACKUP_FLAG" ! -path "*/_dat
   fi
 done
 
+find $BACKUP_TARGET_DIR -name $BACKUP_FLAG -exec rm -rf {} \;
+
 if [ ! -z "$EMAIL" ]; then
   git add .
   git commit -m "$(date +%Y%m%d%H%M%S-%Z)"
