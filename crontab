@@ -1,0 +1,1 @@
+*/15 * * * * $BACKUP_WORK_DIR/backup.sh 2>&1
