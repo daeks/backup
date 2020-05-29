@@ -16,7 +16,7 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN set -x &&\
   apt-get update && apt-get -y upgrade &&\
   apt-get install -y --no-install-recommends --no-install-suggests \
-    procps nano rsyslog cron git rsync &&\
+    procps nano rsyslog cron ca-certificates git rsync &&\
   mkdir -p $BACKUP_SOURCE_DIR && mkdir -p $BACKUP_TARGET_DIR
 
 COPY ./crontab /etc/cron/crontab
