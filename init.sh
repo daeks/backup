@@ -11,6 +11,7 @@ if [ "$GIT" != "OFF" ]; then
     git reset --hard origin/master
     git pull
   else
+    git config --global user.email $EMAIL
     git clone $GIT_URL $BACKUP_TARGET_DIR/
   fi
 fi
