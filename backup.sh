@@ -10,7 +10,7 @@ for backupflag in $(find $BACKUP_SOURCE_DIR -name "$BACKUP_FLAG" ! -path "$BACKU
     target="$BACKUP_TARGET_DIR${backuppath#$BACKUP_SOURCE_DIR}"
     mkdir -p $target
     echo $target
-    rsync -rtvph --exclude '.git' --exclude '*.log' --max-size=100m $backuppath "$BACKUP_TARGET$target" -delete
+    rsync -rtvph --exclude '.git' --exclude '$BACKUP_FLAG' --exclude '*.log' --max-size=100m $backuppath "$BACKUP_TARGET$target" -delete
 
     if [ ! -z "$EMAIL" ]; then
       git add .
