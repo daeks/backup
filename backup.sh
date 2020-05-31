@@ -5,7 +5,7 @@ cd $BACKUP_TARGET_DIR
 
 
 for backupflag in $(find $BACKUP_SOURCE_DIR -name "$BACKUP_FLAG" ! -path "*/_data/*'" &&\
-  find $BACKUP_SOURCE_DIR -name "$BACKUP_FLAG" -path "*_data/_data/*"); do
+  find $BACKUP_SOURCE_DIR -name "$BACKUP_FLAG" -path "*_data/_data/*" -path "*_backup/_data/*"); do
   if [ -f $backupflag ]; then
     backuppath=$(dirname "$backupflag")
     target=$(dirname "$BACKUP_TARGET_DIR${backuppath#$BACKUP_SOURCE_DIR}")
