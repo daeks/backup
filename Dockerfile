@@ -26,7 +26,7 @@ RUN set -x &&\
 
 COPY ./crontab /etc/cron/crontab
 
-COPY ./*.sh $BACKUP_WORK_DIR
+COPY ./*.sh $BACKUP_WORK_DIR/
 RUN chmod +x $BACKUP_WORK_DIR/*.sh
 
 RUN set -x &&\
