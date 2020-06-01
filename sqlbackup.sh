@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ -d $MYSQL_WORK_DIR ]; then
+if [ -d $MYSQL_WORK_DIR/mysql ]; then
   if [ -d $MYSQL_TARGET_DIR ]; then
     if [ ! -z "$RETENTION" ]; then
       find $MYSQL_TARGET_DIR -type f -mtime +$RETENTION -exec rm -f {} \;
