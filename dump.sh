@@ -23,5 +23,5 @@ if [ -d $MYSQL_WORK_DIR ]; then
         | $(which gzip) -9 > $DUMP
     fi
   fi
-  split –b 100m $DUMP "$DUMP.part-"
+  split –b 100m -d $DUMP "$DUMP."
 fi
