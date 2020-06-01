@@ -3,7 +3,6 @@
 rm -rf $BACKUP_TARGET_DIR/*
 cd $BACKUP_TARGET_DIR
 
-
 for backupflag in $(find $BACKUP_SOURCE_DIR -name "$BACKUP_FLAG" ! -path "*/_data/*'" &&\
   find $BACKUP_SOURCE_DIR -name "$BACKUP_FLAG" -path "*_data/_data/*" -path "*_backup/_data/*"); do
   if [ -f $backupflag ]; then
@@ -16,6 +15,8 @@ for backupflag in $(find $BACKUP_SOURCE_DIR -name "$BACKUP_FLAG" ! -path "*/_dat
 done
 
 find $BACKUP_TARGET_DIR -name $BACKUP_FLAG -exec rm -rf {} \;
+
+source $BACKUP_WORK_DIR/dump.sh
 
 if [ ! -z "$EMAIL" ]; then
   git add .
