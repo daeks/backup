@@ -1,6 +1,16 @@
 #!/bin/bash
 
-rm -rf $BACKUP_TARGET_DIR/*
+if [ -d $MYSQL_TARGET_DIR ]; then
+  mkdir -p /tmp$MYSQL_TARGET_DIR
+  mv $MYSQL_TARGET_DIR/* /tmp$MYSQL_TARGET_DIR
+  rm -rf $BACKUP_TARGET_DIR/*
+  mkdir -p $$MYSQL_TARGET_DIR
+  mv /tmp$MYSQL_TARGET_DIR/* $MYSQL_TARGET_DIR
+  rm -r /tmp$MYSQL_TARGET_DIR
+else
+  rm -rf $BACKUP_TARGET_DIR/*
+fi
+
 cd $BACKUP_TARGET_DIR
 
 for backupflag in $(find $BACKUP_SOURCE_DIR -name "$BACKUP_FLAG" ! -path "*/_data/*'" &&\
