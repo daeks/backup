@@ -14,13 +14,15 @@ if [ -d $MYSQL_WORK_DIR ]; then
   cd $MYSQL_TARGET_DIR
 
   if [ ! -z "$MYSQL_HOSTNAME" ] && [ ! -z "$MYSQL_USERNAME" ] && [ ! -z "$MYSQL_PASSWORD" ]; then
-    DUMP=$MYSQL_TARGET_DIR/$MYSQL_DATABASE-$(date +%Y%m%d%H%M%S-%Z).sql.gz
     if [ ! -z "$MYSQL_DATABASE" ]; then
-      $(which mysqldump) -h $MYSQL_HOSTNAME -u $MYSQL_USERNAME -p$MYSQL_PASSWORD -B $MYSQL_DATABASE \
-        | $(which gzip) -9 > $DUMP 
+      for DATABASE in $(echo $MYSQL_DATABASE | sed "s/,/ /g")
+      do
+        $(which mysqldump) -h $MYSQL_HOSTNAME -u $MYSQL_USERNAME -p$MYSQL_PASSWORD -B $DATABASE \
+          | $(which gzip) -9 > $MYSQL_TARGET_DIR/$DATABASE-$(date +%Y%m%d%H%M%S-%Z).sql.gz
+      done
     else
       $(which mysqldump) -h $MYSQL_HOSTNAME -u $MYSQL_USERNAME -p$MYSQL_PASSWORD -A \
-        | $(which gzip) -9 > $DUMP
+        | $(which gzip) -9 > $MYSQL_TARGET_DIR/$MYSQL_HOSTNAME-$(date +%Y%m%d%H%M%S-%Z).sql.gz
     fi
   fi
 fi
