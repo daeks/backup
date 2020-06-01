@@ -23,8 +23,6 @@ if [ -d $MYSQL_WORK_DIR ]; then
         | $(which gzip) -9 > $DUMP
     fi
   fi
-  split –b 100m -d $DUMP "$DUMP."
-  rm $DUMP
 fi
 
 source $BACKUP_WORK_DIR/commit.sh
