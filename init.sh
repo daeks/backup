@@ -15,6 +15,10 @@ if [ "$GIT" != "OFF" ]; then
     if [ ! -z "$EMAIL" ]; then
       git config --global user.email $EMAIL
     fi
+    if [ -d $MYSQL_WORK_DIR ]; then
+      git lfs install
+      git lfs track "*.gz"
+    fi
     git clone $GIT_URL $BACKUP_TARGET_DIR/
   fi
 fi

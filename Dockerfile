@@ -21,7 +21,7 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN set -x &&\
   apt-get update && apt-get -y upgrade &&\
   apt-get install -y --no-install-recommends --no-install-suggests \
-    nano rsyslog cron ca-certificates git rsync mariadb-client &&\
+    nano rsyslog cron ca-certificates git git-lfs rsync mariadb-client &&\
   mkdir -p $BACKUP_SOURCE_DIR && mkdir -p $BACKUP_TARGET_DIR
 
 COPY ./crontab /etc/cron/crontab
