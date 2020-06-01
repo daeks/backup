@@ -1,6 +1,10 @@
 #!/bin/bash
 
-rm -rf $FILE_TARGET_DIR/*
+if [ -d $FILE_TARGET_DIR ]; then
+  rm -rf $FILE_TARGET_DIR/*
+else
+  mkdir -p $FILE_TARGET_DIR
+fi
 
 for backupflag in $(find $BACKUP_SOURCE_DIR -name "$BACKUP_FLAG" ! -path "*/_data/*'" &&\
   find $BACKUP_SOURCE_DIR -name "$BACKUP_FLAG" -path "*_data/_data/*" -path "*_backup/_data/*"); do
