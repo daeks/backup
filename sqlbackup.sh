@@ -20,15 +20,19 @@ if [ -d $MYSQL_WORK_DIR/mysql ]; then
         DUMP=$MYSQL_TARGET_DIR/$DATABASE-$(date +%Y%m%d%H%M%S-%Z).sql.gz
         $(which mysqldump) -h $MYSQL_HOSTNAME -u $MYSQL_USERNAME -p$MYSQL_PASSWORD -B $DATABASE \
           | $(which gzip) -9 > $DUMP
-        split -b 100m -d $DUMP "$DUMP."
-        rm $DUMP
+        if [ -z "$LFS" ]; then
+          split -b 100m -d $DUMP "$DUMP."
+          rm $DUMP
+        fi
       done
     else
       DUMP=$MYSQL_TARGET_DIR/$MYSQL_HOSTNAME-$(date +%Y%m%d%H%M%S-%Z).sql.gz
       $(which mysqldump) -h $MYSQL_HOSTNAME -u $MYSQL_USERNAME -p$MYSQL_PASSWORD -A \
         | $(which gzip) -9 > $DUMP
-      split -b 100m -d $DUMP "$DUMP."
-      rm $DUMP
+      if [ -z "$LFS" ]; then
+        split -b 100m -d $DUMP "$DUMP."
+        rm $DUMP
+      fi
     fi
   fi
 fi
