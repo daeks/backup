@@ -1,1 +1,2 @@
-*/15 * * * * $BACKUP_WORK_DIR/backup.sh 2>&1
+*/15 * * * * $BACKUP_WORK_DIR/filebackup.sh 2>&1
+0 */6 * * *  $BACKUP_WORK_DIR/sqlbackup.sh 2>&1

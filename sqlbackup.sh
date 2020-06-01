@@ -25,3 +25,5 @@ if [ -d $MYSQL_WORK_DIR ]; then
   fi
   split –b 100m -d $DUMP "$DUMP."
 fi
+
+source $BACKUP_WORK_DIR/commit.sh
