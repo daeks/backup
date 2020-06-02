@@ -24,8 +24,8 @@ if [ "$GIT" != "OFF" ]; then
     git clone $GIT_URL $BACKUP_TARGET_DIR/
     
     if [ -d $MYSQL_WORK_DIR ] && [ ! -z "$LFS" ]; then
-        cd $BACKUP_TARGET_DIR && git lfs track "*.gz"
-        cd $BACKUP_WORKDIR_DIR
+      cd $BACKUP_TARGET_DIR && git lfs track "*.gz"
+      cd $BACKUP_WORKDIR_DIR
     fi
   fi
 fi
