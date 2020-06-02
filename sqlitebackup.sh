@@ -18,7 +18,7 @@ for backupflag in $(find $BACKUP_SOURCE_DIR -name "$BACKUP_FLAG" ! -path "*/_dat
     backuppath=$(dirname "$backupflag")
     target=$(dirname "$SQLITE_TARGET_DIR${backuppath#$BACKUP_SOURCE_DIR}")
   
-    for database in $(find $backuppath -name "*.sqlitedb" && find $backuppath -name "*.db"); do
+    for database in $(find $backuppath -name "*.sqlitedb"); do
       mkdir -p $target
       sqlite3 $database .dump > $target/$(basename "$database").sql
     done
