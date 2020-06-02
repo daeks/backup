@@ -8,6 +8,7 @@ fi
 
 if [ "$GIT" != "OFF" ]; then
   if [ -d "$BACKUP_TARGET_DIR/.git" ]; then
+    cd $BACKUP_TARGET_DIR
     git fetch --all origin
     git reset --hard origin/master
     git pull
@@ -16,14 +17,13 @@ if [ "$GIT" != "OFF" ]; then
       git config --global user.email $EMAIL
     fi
     
-    if [ -d $MYSQL_WORK_DIR ]; then
+    if [ -d $MYSQL_WORK_DIR ] && [ ! -z "$LFS" ]; then
       git lfs install
     fi
     
     git clone $GIT_URL $BACKUP_TARGET_DIR/
     
-    if [ -d $MYSQL_WORK_DIR ]; then
-      if [ ! -z "$LFS" ]; then
+    if [ -d $MYSQL_WORK_DIR ] && [ ! -z "$LFS" ]; then
         cd $BACKUP_TARGET_DIR && git lfs track "*.gz"
         cd $BACKUP_WORKDIR_DIR
       fi

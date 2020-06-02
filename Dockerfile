@@ -14,14 +14,16 @@ ENV BACKUP_TARGET_DIR $BACKUP_WORK_DIR/target
 ENV FILE_TARGET_DIR $BACKUP_TARGET_DIR/file
 
 ENV MYSQL_WORK_DIR /var/lib/mysql
-ENV MYSQL_TARGET_DIR $BACKUP_TARGET_DIR/sql
+ENV MYSQL_TARGET_DIR $BACKUP_TARGET_DIR/mysql
+
+ENV SQLITE_TARGET_DIR $BACKUP_TARGET_DIR/sqlite
 
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN set -x &&\
   apt-get update && apt-get -y upgrade &&\
   apt-get install -y --no-install-recommends --no-install-suggests \
-    nano rsyslog cron ca-certificates git git-lfs rsync mariadb-client &&\
+    nano rsyslog cron ca-certificates git git-lfs rsync mariadb-client sqlite3 &&\
   mkdir -p $BACKUP_SOURCE_DIR && mkdir -p $BACKUP_TARGET_DIR
 
 COPY ./crontab /etc/cron/crontab
