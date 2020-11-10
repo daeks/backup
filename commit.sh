@@ -6,4 +6,5 @@ if [ ! -z "$EMAIL" ]; then
   git add .
   git commit -m "$(date +%Y%m%d%H%M%S-%Z)"
   git push
+  git gc --aggressive --prune
 fi
